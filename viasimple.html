@@ -1,0 +1,215 @@
+<htmlform>
+<style type="text/css" media="screen">
+table.viaform {
+    border-collapse: collapse;
+}
+table.viaform, table.viaform th, table.viaform td {
+    border: 1px solid black;
+}
+table.viaform td {
+    padding: 2px;
+}
+</style>
+<script type="text/javascript">
+if (jQuery) {
+    $j(document).ready(function(){
+        if ( $j.browser.msie ) {
+            $j(":checkbox").click(function(){
+                $j(this).change();
+            });
+        }
+        $j(".enableDisable").each(function(){
+            var group = $j(this);
+            var disableFn = function() {
+                group.children("#disabled").fadeTo(250,0.33); 
+                group.children("#disabled").find(":checkbox").attr("checked",false);
+                group.children("#disabled").find("input[type$='text']").val(""); 
+                group.children("#disabled").find("input").attr("disabled",true);
+            };
+            var enableFn = function () {
+                group.children("#disabled").fadeTo(250,1);
+                group.children("#disabled").find("input").attr("disabled",false);
+            };
+            disableFn();
+            $j(this).children("#trigger").find(":checkbox:first").change(function() {
+                var checked = $j(this).attr("checked");
+                if (checked == true) {
+                    enableFn();
+                } else {
+                    disableFn();
+                }
+            });
+        });
+        $j(".checkboxGroup").each(function(){
+            var group = $j(this);
+            var uncheckAll = function(){
+                group.find("input[type$='checkbox']").attr("checked",false);
+                group.find("input[type$='checkbox']").change();
+            };
+            var uncheckRadioAndAll = function(){
+                group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").attr("checked",false);
+                group.find("#checkboxAll,#checkboxRadio").find("input[type$='checkbox']").change();
+            };
+            
+            group.find("#checkboxAll").find("input").click( 
+                function(){
+                    var flip;
+                    var checked = $j(this).siblings(":checkbox:first").attr("checked");
+                    if($j(this).attr("name") == $j(this).parents("#checkboxAll:first").find(":checkbox:first").attr("name")){
+                        checked = $j(this).attr("checked");
+                        flip = checked;
+                    }else{
+                        flip = !checked;
+                    }
+                    if($j(this).attr("type") == "text") if(flip == false) flip = !filp;
+                    uncheckAll();
+                    $j(this).parents("#checkboxAll:first").find(":checkbox").attr("checked",flip);
+                    $j(this).parents("#checkboxAll:first").find(":checkbox").change();
+                }
+            );
+            
+            group.find("#checkboxRadio").find("input[type$='checkbox']").click(function(){
+                uncheckAll();
+                $j(this).siblings("input[type$='checkbox']").attr("checked",false);
+                $j(this).attr("checked",true);
+                $j(this).change();
+            });
+            
+            group.find("#checkboxCheckbox").click(
+                function(){
+                    uncheckRadioAndAll();
+                }
+            );
+        });
+        
+    });
+}
+</script>
+<div style="margin:auto; width:700px;">
+  <table class="viaform" width="100%">
+    <tr>
+      <td>USAID | AMPATH Partnership</td>
+      <td style="text-align:center;font-weight:bold;background:#e6e6e6;">CCSP VIA FORM</td>
+      <td>Date <encounterDate default="today"/></td>
+    </tr>
+    <tr>
+      <td colspan="2">Name: <lookup expression="patient.givenName" /><patient field="name" /></td>
+      <td>Visit Type:
+        <obsgroup groupingConceptId="1839"> 
+          <span id="checkboxRadio">
+          <obs conceptId="1839" answerConceptId="2344" answerLabel="New" style="checkbox"/>
+          <obs conceptId="1839" answerConceptId="2345" answerLabel="Revisit" style="checkbox"/> 
+          </span>
+        </obsgroup>
+      </td>
+    </tr>
+    <tr>
+      <td>AMRS</td>
+      <td colspan="2">AMPATH ID</td>
+    </tr>
+    <tr>
+      <td colspan="3">Residence <patient field="address" /> Phone Number</td>
+    </tr>
+    <tr>
+      <td>Age <patient field="birthDateOrAge" /></td>
+      <td colspan="2"><encounterLocation/></td>
+    </tr>
+    <tr>
+      <td colspan="3"><obs conceptId="1836" labelText="LMP"/>
+        <obsgroup groupingConceptId="2061"> 
+          <obs conceptId="2061" answerConceptId="2060" answerLabel="Amenorrhea"/> 
+          <obs conceptId="2061" answerConceptId="6496" answerLabel="Postmenopausal"/> 
+        </obsgroup>
+        <obs conceptId="1053" labelText="Parity"/> 
+        <obs conceptId="5624" labelText="Gravida"/> 
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">HIV Status
+        <obsgroup groupingConceptId="6709"> 
+          <obs conceptId="6709" answerConceptId="1067" answerLabel="Unknown"/> 
+          <obs conceptId="6709" answerConceptId="664" answerLabel="Negative"/> 
+          <obs conceptId="6709" answerConceptId="703" answerLabel="Positive"/> 
+        </obsgroup>
+        <obs conceptId="1871" labelText="Latest CD4 count"/> 
+        <!-- TODO Refresh Concept table <obs conceptId="7415" labelText="Date"/> -->
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">Prior VIA
+        <obsgroup groupingConceptId="7381">
+          <obs conceptId="7381" answerConceptId="1175" answerLabel="N/A"/> 
+          <obs conceptId="7381" answerConceptId="703" answerLabel="Positive"/> 
+          <obs conceptId="7381" answerConceptId="664" answerLabel="Negative"/> 
+        </obsgroup>
+        <obs conceptId="7380" labelText="Date"/> 
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">Current FP
+        <obsgroup groupingConceptId="374">
+          <obs conceptId="374" answerConceptId="1107" answerLabel="None"/> 
+          <obs conceptId="374" answerConceptId="907" answerLabel="Depo"/> 
+          <obs conceptId="374" answerConceptId="5275" answerLabel="IUCD"/> 
+          <obs conceptId="374" answerConceptId="6220" answerLabel="Implant"/> 
+          <obs conceptId="374" answerConceptId="780" answerLabel="Pills"/>      
+          <obs conceptId="374" answerConceptId="5276" answerLabel="Sterilization"/> 
+          <obs conceptId="374" answerConceptId="6718" answerLabel="Male condom"/> 
+          <obs conceptId="374" answerConceptId="6717" answerLabel="Female condom"/> 
+          <obs conceptId="374" answerConceptId="5277" answerLabel="Rhythm"/> 
+        </obsgroup>
+      </td>
+    </tr>
+    <tr>
+      <obsgroup groupingConceptId="7501">
+        <td>Impression: Cervix
+        <obsgroup groupingConceptId="7484">
+          <obs conceptId="7484" answerConceptId="1115" answerLabel="Normal"/> 
+          <obs conceptId="7484" answerConceptId="7507" answerLabel="Positive VIA + aceto-white only"/> 
+          <obs conceptId="7484" answerConceptId="7508" answerLabel="Positive VIA + suspicious lesion for cancer"/> 
+        </obsgroup>
+        </td>
+        <td>Impression: Vagina
+        <obsgroup groupingConceptId="7490">
+          <obs conceptId="7490" answerConceptId="1115" answerLabel="Normal"/> 
+          <obs conceptId="7490" answerConceptId="1116" answerLabel="Abnormal"/> 
+        </obsgroup>
+        </td>
+        <td>Impression: Vulva
+        <obsgroup groupingConceptId="7487">
+          <obs conceptId="7487" answerConceptId="1115" answerLabel="Normal"/> 
+          <obs conceptId="7490" answerConceptId="1116" answerLabel="Abnormal"/> 
+        </obsgroup>
+        </td>
+      </obsgroup>
+    </tr>
+    <tr>
+      <td colspan="3">If abnormal (Positive VIA) document below</td>
+    </tr>
+    <tr>
+      <obsgroup groupingConceptId="7480">
+        <td>Procedures(s) Done
+        <obsgroup groupingConceptId="7479">
+          <obs conceptId="7479" answerConceptId="6511" answerLabel="Biopsies"/> 
+          <obs conceptId="7479" answerConceptId="7481" answerLabel="o'clock"/> 
+          <obs conceptId="7479" answerConceptId="7478" answerLabel="ECC"/> 
+          <obs conceptId="7479" answerConceptId="7466" answerLabel="Cryotherapy"/> 
+          <obs conceptId="7479" answerConceptId="1107" answerLabel="None"/> 
+        </obsgroup>
+        </td>
+        <td>Plan:
+        
+        </td>
+        <td>FP Plan</td>
+        
+      </obsgroup>
+    </tr>
+    <tr>
+      <td colspan="3">Next Appointment Date</td>
+    </tr>
+  </table>
+
+
+  <submit/>
+</div>
+</htmlform> 
