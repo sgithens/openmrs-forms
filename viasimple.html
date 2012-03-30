@@ -9,6 +9,10 @@ table.viaform, table.viaform th, table.viaform td {
 table.viaform td {
     padding: 2px;
 }
+h5 {
+    display: inline;
+    font-weight: bold;
+}
 </style>
 <script type="text/javascript">
 if (jQuery) {
@@ -85,16 +89,20 @@ if (jQuery) {
     });
 }
 </script>
-<div style="margin:auto; width:700px;">
+<div style="margin:auto; width:800px;">
   <table class="viaform" width="100%">
     <tr>
-      <td>USAID | AMPATH Partnership</td>
-      <td style="text-align:center;font-weight:bold;background:#e6e6e6;">CCSP VIA FORM</td>
+      <td width="33%">USAID | AMPATH Partnership</td>
+      <td width="33%" style="text-align:center;font-weight:bold;background:#e6e6e6;">CCSP VIA FORM 2</td>
       <td>Date <encounterDate default="today"/></td>
     </tr>
     <tr>
-      <td colspan="2">Name: <lookup expression="patient.givenName" /><patient field="name" /></td>
-      <td>Visit Type:
+      <td colspan="2"><h5>Name:</h5>
+        <lookup expression="patient.givenName" />
+        <lookup expression="patient.middleName"/> 
+        <lookup expression="patient.familyName"/> 
+      </td>
+      <td><h5>Visit Type:</h5><br/>
         <obsgroup groupingConceptId="1839"> 
           <span id="checkboxRadio">
           <obs conceptId="1839" answerConceptId="2344" answerLabel="New" style="checkbox"/>
@@ -104,14 +112,16 @@ if (jQuery) {
       </td>
     </tr>
     <tr>
-      <td>AMRS</td>
+      <td>AMRS
+      <lookup expression="patient.medicalRecordNumber"/> 
+      </td>
       <td colspan="2">AMPATH ID</td>
     </tr>
     <tr>
-      <td colspan="3">Residence <patient field="address" /> Phone Number</td>
+      <td colspan="3"><h5>Residence:</h5> <lookup expression="personAttributes.address.cityVillage"/> ok then 6 <!-- <patient field="address" /> --> Phone Number</td>
     </tr>
     <tr>
-      <td>Age <patient field="birthDateOrAge" /></td>
+      <td><patient field="birthDateOrAge" /></td>
       <td colspan="2"><encounterLocation/></td>
     </tr>
     <tr>
@@ -198,14 +208,44 @@ if (jQuery) {
         </obsgroup>
         </td>
         <td>Plan:
-        
+        <obsgroup groupingConceptId="7500">
+          <obs conceptId="7500" answerConceptId="7496" answerLabel="Routine VIA in 1-year"/> 
+          <obs conceptId="7500" answerConceptId="7497" answerLabel="Routine VIA in 3-years"/> 
+          <obs conceptId="7500" answerConceptId="7383" answerLabel="Referral for Colposcopy"/> 
+          <obs conceptId="7500" answerConceptId="7499" answerLabel="Referral to Gynae-Oncology"/> 
+        </obsgroup>
         </td>
-        <td>FP Plan</td>
-        
+        <td>FP Plan
+        Directive FP counseling performed
+        <obsgroup groupingConceptId="6681">
+          <obs conceptId="6681" answerConceptId="1065" answerLabel="Yes"/> 
+          <obs conceptId="6681" answerConceptId="1066" answerLabel="No"/> 
+        </obsgroup>
+        Refill dispensed
+        <obsgroup groupingConceptId="7495">
+          <obs conceptId="7495" answerConceptId="1107" answerLabel="None"/> 
+          <obs conceptId="7495" answerConceptId="907" answerLabel="Depo"/> 
+          <obs conceptId="7495" answerConceptId="780" answerLabel="Pills"/> 
+          <obs conceptId="7495" answerConceptId="6718" answerLabel="Male Condom"/> 
+          <obs conceptId="7495" answerConceptId="6717" answerLabel="Female Condom"/> 
+        </obsgroup>
+        New method initiated
+        <obsgroup groupingConceptId="7240">
+          <obs conceptId="7240" answerConceptId="1107" answerLabel="No new method"/> 
+          <obs conceptId="7240" answerConceptId="907" answerLabel="Depo"/> 
+          <obs conceptId="7240" answerConceptId="780" answerLabel="Pills"/> 
+          <obs conceptId="7240" answerConceptId="6220" answerLabel="Implant"/> 
+          <obs conceptId="7240" answerConceptId="6718" answerLabel="Male Condom"/> 
+          <obs conceptId="7240" answerConceptId="6717" answerLabel="Female Condom"/> 
+        </obsgroup>
+        </td>
       </obsgroup>
     </tr>
     <tr>
-      <td colspan="3">Next Appointment Date</td>
+      <td colspan="3">
+      <obs conceptId="5096" labelText="Next Appointment Date"/> 
+      <encounterProvider/>
+      </td>
     </tr>
   </table>
 
