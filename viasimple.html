@@ -8,10 +8,27 @@ table.viaform, table.viaform th, table.viaform td {
 }
 table.viaform td {
     padding: 2px;
+    vertical-align:top;
+}
+table.viaform ul {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-top: 0px;
 }
 h5 {
     display: inline;
     font-weight: bold;
+}
+table.layout {
+    width: 100%;
+    border-collapse: collapse:
+    border: 0px;
+}
+table.layout th, table.layout td {
+    border: 0px;
+}
+.unsupported {
+    background: #EEEEEE;
 }
 </style>
 <script type="text/javascript">
@@ -118,45 +135,91 @@ if (jQuery) {
       <td colspan="2">AMPATH ID</td>
     </tr>
     <tr>
-      <td colspan="3"><h5>Residence:</h5> <lookup expression="personAttributes.address.cityVillage"/> ok then 6 <!-- <patient field="address" /> --> Phone Number</td>
-    </tr>
-    <tr>
-      <td><patient field="birthDateOrAge" /></td>
-      <td colspan="2"><encounterLocation/></td>
-    </tr>
-    <tr>
-      <td colspan="3"><obs conceptId="1836" labelText="LMP"/>
-        <obsgroup groupingConceptId="2061"> 
-          <obs conceptId="2061" answerConceptId="2060" answerLabel="Amenorrhea"/> 
-          <obs conceptId="2061" answerConceptId="6496" answerLabel="Postmenopausal"/> 
-        </obsgroup>
-        <obs conceptId="1053" labelText="Parity"/> 
-        <obs conceptId="5624" labelText="Gravida"/> 
+      <td colspan="3"><h5>Residence:</h5> <lookup expression="patient.personAddress.address1"/> <h5>Phone Number:</h5><lookup expression="personAttributes.get('Contact Phone Number')"/><br/><h5>Patient's own phone?</h5>
+      <obsgroup groupingConceptId="7506">
+        <obs conceptId="7506" answerConceptId="1065" answerLabel="yes"/> 
+        <obs conceptId="7506" answerConceptId="1066" answerLabel="no"/> 
+      </obsgroup>
+      <span class="unsupported"> (if no, specify owner______________)</span>
       </td>
     </tr>
     <tr>
-      <td colspan="3">HIV Status
-        <obsgroup groupingConceptId="6709"> 
-          <obs conceptId="6709" answerConceptId="1067" answerLabel="Unknown"/> 
-          <obs conceptId="6709" answerConceptId="664" answerLabel="Negative"/> 
-          <obs conceptId="6709" answerConceptId="703" answerLabel="Positive"/> 
-        </obsgroup>
-        <obs conceptId="1871" labelText="Latest CD4 count"/> 
-        <!-- TODO Refresh Concept table <obs conceptId="7415" labelText="Date"/> -->
+      <td><h5>Age:</h5><lookup class="value" expression="patient.age"/></td>
+      <td colspan="2"><h5>Clinic:</h5><encounterLocation/></td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <table class="layout">
+          <tr>
+            <td><h5>1.</h5></td>
+            <td width="33%">
+              <obs conceptId="1836" labelText="LMP"/>
+            </td>
+            <td>
+              <obsgroup groupingConceptId="2061"> 
+                <obs conceptId="2061" answerConceptId="2060" answerLabel="Amenorrhea"/> 
+                <obs conceptId="2061" answerConceptId="6496" answerLabel="Postmenopausal"/> 
+              </obsgroup>
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>
+              <obs conceptId="1053" labelText="Parity"/>
+            </td>
+            <td>
+               <obs conceptId="5624" labelText="Gravida"/>                
+            </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td>(if LMP > 35 days do pregnancy test)</td>
+            <td>Note: All pregnant women are excluded from VIA</td>
+          </tr>
+        </table>
       </td>
     </tr>
     <tr>
-      <td colspan="3">Prior VIA
-        <obsgroup groupingConceptId="7381">
-          <obs conceptId="7381" answerConceptId="1175" answerLabel="N/A"/> 
-          <obs conceptId="7381" answerConceptId="703" answerLabel="Positive"/> 
-          <obs conceptId="7381" answerConceptId="664" answerLabel="Negative"/> 
-        </obsgroup>
-        <obs conceptId="7380" labelText="Date"/> 
+      <td colspan="3">
+        <table class="layout">
+          <tr>
+            <td><h5>2.</h5></td>
+          <td><h5>HIV Status</h5>
+          <obsgroup groupingConceptId="6709"> 
+            <obs conceptId="6709" answerConceptId="1067" answerLabel="Unknown"/> 
+            <obs conceptId="6709" answerConceptId="664" answerLabel="Negative"/> 
+            <obs conceptId="6709" answerConceptId="703" answerLabel="Positive"/> 
+          </obsgroup>
+          </td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><obs conceptId="1871" labelText="Latest CD4 count"/>
+            <obs conceptId="7415" labelText="Date"/> 
+            </td>
+          </tr>
+        </table>
       </td>
     </tr>
     <tr>
-      <td colspan="3">Current FP
+      <td colspan="3">
+        <table class="layout">
+          <tr>
+            <td><h5>3.</h5></td>
+            <td><h5>Prior VIA</h5><span class="checkboxGroup"><span id="checkboxRadio">
+              <obsgroup groupingConceptId="7381">
+                <obs conceptId="7381" answerConceptId="1175" answerLabel="N/A"/> 
+                <obs conceptId="7381" answerConceptId="703" answerLabel="Positive"/> 
+                <obs conceptId="7381" answerConceptId="664" answerLabel="Negative"/> 
+              </obsgroup></span></span>
+              <obs conceptId="7380" labelText="Date"/> 
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3"><h5> 4. Current FP</h5>
         <obsgroup groupingConceptId="374">
           <obs conceptId="374" answerConceptId="1107" answerLabel="None"/> 
           <obs conceptId="374" answerConceptId="907" answerLabel="Depo"/> 
@@ -172,72 +235,95 @@ if (jQuery) {
     </tr>
     <tr>
       <obsgroup groupingConceptId="7501">
-        <td>Impression: Cervix
+        <td><h5>5. Impression: Cervix</h5>
         <obsgroup groupingConceptId="7484">
-          <obs conceptId="7484" answerConceptId="1115" answerLabel="Normal"/> 
-          <obs conceptId="7484" answerConceptId="7507" answerLabel="Positive VIA + aceto-white only"/> 
-          <obs conceptId="7484" answerConceptId="7508" answerLabel="Positive VIA + suspicious lesion for cancer"/> 
+          <ul>
+          <li><obs conceptId="7484" answerConceptId="1115" answerLabel="Normal"/> </li>
+          <li><obs conceptId="7484" answerConceptId="7507" answerLabel="Positive VIA + aceto-white only"/> </li>
+          <li><obs conceptId="7484" answerConceptId="7508" answerLabel="Positive VIA + suspicious lesion for cancer"/> </li>
+          </ul>
         </obsgroup>
         </td>
-        <td>Impression: Vagina
+        <td><h5>Impression: Vagina</h5>
         <obsgroup groupingConceptId="7490">
-          <obs conceptId="7490" answerConceptId="1115" answerLabel="Normal"/> 
-          <obs conceptId="7490" answerConceptId="1116" answerLabel="Abnormal"/> 
+          <ul>
+          <li><obs conceptId="7490" answerConceptId="1115" answerLabel="Normal"/> </li>
+          <li><obs conceptId="7490" answerConceptId="1116" answerLabel="Abnormal"/> </li>
+          </ul>
         </obsgroup>
         </td>
-        <td>Impression: Vulva
+        <td><h5>Impression: Vulva</h5>
         <obsgroup groupingConceptId="7487">
-          <obs conceptId="7487" answerConceptId="1115" answerLabel="Normal"/> 
-          <obs conceptId="7490" answerConceptId="1116" answerLabel="Abnormal"/> 
+          <ul>
+          <li><obs conceptId="7487" answerConceptId="1115" answerLabel="Normal"/> </li>
+          <li><obs conceptId="7490" answerConceptId="1116" answerLabel="Abnormal"/> </li>
+          </ul>
         </obsgroup>
         </td>
       </obsgroup>
     </tr>
     <tr>
-      <td colspan="3">If abnormal (Positive VIA) document below</td>
+      <td colspan="3" class="unsupported" style="height:150px;"><h5>6. If abnormal (Positive VIA) document below</h5></td>
     </tr>
     <tr>
       <obsgroup groupingConceptId="7480">
-        <td>Procedures(s) Done
+        <td><h5>7. Procedures(s) Done</h5>
         <obsgroup groupingConceptId="7479">
-          <obs conceptId="7479" answerConceptId="6511" answerLabel="Biopsies"/> 
-          <obs conceptId="7479" answerConceptId="7481" answerLabel="o'clock"/> 
-          <obs conceptId="7479" answerConceptId="7478" answerLabel="ECC"/> 
-          <obs conceptId="7479" answerConceptId="7466" answerLabel="Cryotherapy"/> 
-          <obs conceptId="7479" answerConceptId="1107" answerLabel="None"/> 
+          <ul>
+          <li><obs conceptId="7479" answerConceptId="6511" answerLabel="Biopsies"/> </li>
+          <li><obs conceptId="7479" answerConceptId="7481" answerLabel="o'clock"/>  </li>
+          <li><obs conceptId="7479" answerConceptId="7478" answerLabel="ECC"/>  </li>
+          <li><obs conceptId="7479" answerConceptId="7466" answerLabel="Cryotherapy"/> </li> 
+          <li><obs conceptId="7479" answerConceptId="1107" answerLabel="None"/>  </li>
+          </ul>
         </obsgroup>
         </td>
-        <td>Plan:
+        <td><h5>8. Plan:</h5>
         <obsgroup groupingConceptId="7500">
-          <obs conceptId="7500" answerConceptId="7496" answerLabel="Routine VIA in 1-year"/> 
-          <obs conceptId="7500" answerConceptId="7497" answerLabel="Routine VIA in 3-years"/> 
-          <obs conceptId="7500" answerConceptId="7383" answerLabel="Referral for Colposcopy"/> 
-          <obs conceptId="7500" answerConceptId="7499" answerLabel="Referral to Gynae-Oncology"/> 
+          <ul>
+          <li><obs conceptId="7500" answerConceptId="7496" answerLabel="Routine VIA in 1-year"/></li>
+          <li><obs conceptId="7500" answerConceptId="7497" answerLabel="Routine VIA in 3-years"/> </li>
+          <li><obs conceptId="7500" answerConceptId="7383" answerLabel="Referral for Colposcopy"/> </li>
+          <li><obs conceptId="7500" answerConceptId="7499" answerLabel="Referral to Gynae-Oncology"/> </li>
+          </ul>
         </obsgroup>
         </td>
-        <td>FP Plan
-        Directive FP counseling performed
+        <td><h5>9. FP Plan:</h5>
+        <ul>
+          <li>
+        <h5>Directive FP counseling performed</h5>
         <obsgroup groupingConceptId="6681">
-          <obs conceptId="6681" answerConceptId="1065" answerLabel="Yes"/> 
-          <obs conceptId="6681" answerConceptId="1066" answerLabel="No"/> 
+          <ul>
+          <li><obs conceptId="6681" answerConceptId="1065" answerLabel="Yes"/><obs conceptId="6681" answerConceptId="1066" answerLabel="No"/> </li>
+          </ul>
         </obsgroup>
-        Refill dispensed
+          </li>
+          <li>
         <obsgroup groupingConceptId="7495">
-          <obs conceptId="7495" answerConceptId="1107" answerLabel="None"/> 
-          <obs conceptId="7495" answerConceptId="907" answerLabel="Depo"/> 
-          <obs conceptId="7495" answerConceptId="780" answerLabel="Pills"/> 
-          <obs conceptId="7495" answerConceptId="6718" answerLabel="Male Condom"/> 
-          <obs conceptId="7495" answerConceptId="6717" answerLabel="Female Condom"/> 
+        <h5>Refill dispensed</h5><obs conceptId="7495" answerConceptId="1107" answerLabel="None"/>
+          <ul>
+          <li><obs conceptId="7495" answerConceptId="907" answerLabel="Depo"/><obs conceptId="7495" answerConceptId="780" answerLabel="Pills"/> </li>
+          <li><obs conceptId="7495" answerConceptId="6718" answerLabel="Male Condom"/> </li>
+          <li><obs conceptId="7495" answerConceptId="6717" answerLabel="Female Condom"/> </li>
+          </ul>
         </obsgroup>
-        New method initiated
+          </li>
+          <li>
+        <h5>New method initiated</h5>
         <obsgroup groupingConceptId="7240">
-          <obs conceptId="7240" answerConceptId="1107" answerLabel="No new method"/> 
-          <obs conceptId="7240" answerConceptId="907" answerLabel="Depo"/> 
-          <obs conceptId="7240" answerConceptId="780" answerLabel="Pills"/> 
-          <obs conceptId="7240" answerConceptId="6220" answerLabel="Implant"/> 
-          <obs conceptId="7240" answerConceptId="6718" answerLabel="Male Condom"/> 
-          <obs conceptId="7240" answerConceptId="6717" answerLabel="Female Condom"/> 
+          <ul>
+          <li><obs conceptId="7240" answerConceptId="1107" answerLabel="No new method"/> </li>
+          <li><obs conceptId="7240" answerConceptId="907" answerLabel="Depo"/>
+              <obs conceptId="7240" answerConceptId="780" answerLabel="Pills"/>
+              <obs conceptId="7240" answerConceptId="6220" answerLabel="Implant"/> 
+          </li>
+          <li><obs conceptId="7240" answerConceptId="6718" answerLabel="Male Condom"/>
+              <obs conceptId="7240" answerConceptId="6717" answerLabel="Female Condom"/> 
+          </li>
+          </ul>
         </obsgroup>
+          </li>
+        </ul>
         </td>
       </obsgroup>
     </tr>
