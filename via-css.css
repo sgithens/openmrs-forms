@@ -1,0 +1,50 @@
+table.viaform {
+    border-collapse: collapse;
+    margin: 10px;
+}
+table.viaform, table.viaform th, table.viaform td {
+    border: 1px solid black;
+}
+table.viaform td {
+    padding: 2px;
+    vertical-align:top;
+}
+table.viaform ul {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-top: 0px;
+}
+h5 {
+    display: inline;
+    font-weight: bold;
+}
+table.layout {
+    width: 100%;
+    border-collapse: collapse;
+    border: 0px;
+    margin: 0px;
+}
+table.layout tbody {
+    border: 0px;
+    margin: 0px;
+}
+table.layout th, table.layout td {
+    border: 0px;
+    margin: 0px;
+    padding: 0px;
+}
+.unsupported {
+    background: #EEEEEE;
+}
+.value {
+    color: black;
+}
+.ampath-blue {
+    color: #070d5a;
+}
+.ampath-red {
+    color: #800d1b;
+}
+table.quartercolumns td {
+    width: 25%;
+}
