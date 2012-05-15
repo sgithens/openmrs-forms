@@ -1,4 +1,5 @@
 <div style="margin:auto; width:800px;">
+  <h2>Sgithens debug 14</h2>
   <table class="viaform" width="100%">
     <tr>
       <td style="text-align:center;" width="33%">
@@ -16,30 +17,28 @@
         <lookup expression="patient.familyName"/> 
       </td>
       <td class="checkboxGroup"><h5 style="display:block;">Visit Type:</h5>
-        <obsgroup groupingConceptId="1839"> 
           <span id="checkboxRadio">
           <obs conceptId="1839" answerConceptId="2344" answerLabel="New" style="checkbox"/>
           <obs conceptId="1839" answerConceptId="2345" answerLabel="Revisit" style="checkbox"/> 
           </span>
-        </obsgroup>
       </td>
     </tr>
     <tr>
       <td>AMRS
       <lookup expression="patient.medicalRecordNumber"/> 
       </td>
-      <td colspan="2">AMPATH ID</td>
+      <td colspan="2"><h5>AMPATH ID:</h5>
+        <lookup expression="personAttributes.get('AMRS Universal Id')" />
+      </td>
     </tr>
     <tr>
       <td class="checkboxGroup" colspan="3"><span style="display: block;"><h5>Residence:</h5> <lookup expression="patient.personAddress.address1"/> <h5>Phone Number:</h5><lookup expression="personAttributes.get('Contact Phone Number')"/>
       </span>
       <h5>Patient's own phone?</h5>
-      <obsgroup groupingConceptId="7506">
         <span id="checkboxRadio">
         <obs conceptId="7506" answerConceptId="1065" answerLabel="yes"/> 
         <obs conceptId="7506" answerConceptId="1066" answerLabel="no"/> 
         </span>
-      </obsgroup>
       <span class="unsupported"> (if no, specify owner______________)</span>
       </td>
     </tr>
@@ -56,12 +55,10 @@
               <obs conceptId="1836" labelText="LMP" id="via-lmp"/>
             </td>
             <td class="checkboxGroup">
-              <obsgroup groupingConceptId="2061"> 
                 <span id="checkboxRadio">
                 <obs conceptId="2061" answerConceptId="2060" answerLabel="Amenorrhea"/> 
                 <obs conceptId="2061" answerConceptId="6496" answerLabel="Postmenopausal"/> 
                 </span>
-              </obsgroup>
             </td>
           </tr>
           <tr>
@@ -87,13 +84,11 @@
           <tr>
             <td><h5>2.</h5></td>
           <td class="checkboxGroup"><h5>HIV Status</h5>
-          <obsgroup groupingConceptId="6709"> 
             <span id="checkboxRadio">
             <obs conceptId="6709" answerConceptId="1067" answerLabel="Unknown"/> 
             <obs conceptId="6709" answerConceptId="664" answerLabel="Negative"/> 
             <obs conceptId="6709" answerConceptId="703" answerLabel="Positive"/> 
             </span>
-          </obsgroup>
           </td>
           </tr>
           <tr>
@@ -111,11 +106,10 @@
           <tr>
             <td><h5>3.</h5></td>
             <td><h5>Prior VIA</h5><span class="checkboxGroup"><span id="checkboxRadio">
-              <obsgroup groupingConceptId="7381">
                 <!-- <obs conceptId="7381" answerConceptId="1175" answerLabel="N/A"/> -->
                 <obs conceptId="7381" answerConceptId="703" answerLabel="Positive"/> 
                 <obs conceptId="7381" answerConceptId="664" answerLabel="Negative"/> 
-              </obsgroup></span></span>
+              </span></span>
               <obs conceptId="7380" labelText="Date"/> 
             </td>
           </tr>
@@ -124,7 +118,6 @@
     </tr>
     <tr>
       <td class="checkboxGroup" colspan="3"><h5> 4. Current FP</h5>
-        <obsgroup groupingConceptId="374">
           <span id="checkboxRadio">
           <obs conceptId="374" answerConceptId="1107" answerLabel="None"/> 
           <obs conceptId="374" answerConceptId="907" answerLabel="Depo"/> 
@@ -136,87 +129,76 @@
           <obs conceptId="374" answerConceptId="6717" answerLabel="Female condom"/> 
           <obs conceptId="374" answerConceptId="5277" answerLabel="Rhythm"/> 
           </span>
-        </obsgroup>
       </td>
     </tr>
     <tr>
       <obsgroup groupingConceptId="7501">
         <td class="checkboxGroup" ><h5>5. Impression: Cervix</h5>
-        <obsgroup groupingConceptId="7484">
           <ul id="checkboxRadio">
           <li><obs conceptId="7484" answerConceptId="1115" answerLabel="Normal"/> </li>
           <li><obs conceptId="7484" answerConceptId="7507" answerLabel="Positive VIA + aceto-white only"/> </li>
           <li><obs conceptId="7484" answerConceptId="7508" answerLabel="Positive VIA + suspicious lesion for cancer"/> </li>
           </ul>
-        </obsgroup>
         </td>
         <td class="checkboxGroup"><h5>Impression: Vagina</h5>
-        <obsgroup groupingConceptId="7490">
           <ul id="checkboxRadio">            
           <li><obs conceptId="7490" answerConceptId="1115" answerLabel="Normal"/> </li>
           <li><obs conceptId="7490" answerConceptId="1116" answerLabel="Abnormal"/> </li>
           </ul>
-        </obsgroup>
         </td>
         <td class="checkboxGroup"><h5>Impression: Vulva</h5>
-        <obsgroup groupingConceptId="7487">
           <ul id="checkboxRadio">
           <li><obs conceptId="7487" answerConceptId="1115" answerLabel="Normal"/> </li>
           <li><obs conceptId="7490" answerConceptId="1116" answerLabel="Abnormal"/> </li>
           </ul>
-        </obsgroup>
         </td>
       </obsgroup>
     </tr>
     <tr>
-      <td colspan="3" class="unsupported" style="height:150px;"><h5>6. If abnormal (Positive VIA) document below</h5></td>
-    </tr>
-    <tr>
       <obsgroup groupingConceptId="7480">
-        <td class="checkboxGroup"><h5>7. Procedures(s) Done</h5>
-        <obsgroup groupingConceptId="7479">
+        <td class="checkboxGroup"><h5>6. Procedures(s) Done</h5>
           <ul>
           <li id="checkboxCheckbox"><obs conceptId="7479" answerConceptId="6511" answerLabel="Biopsies"/> </li>
-          <li id="checkboxCheckbox"><obs conceptId="7481" labelText=""/><span>o'clock</span></li>
+          <li id="checkboxCheckbox">
+          <repeat>
+            <template>
+              <obs conceptId="7481" labelText="" answers="{num}.0" answerLabels="{num}" style="radio" />
+            </template>
+            <render num="1" /><render num="2" /><render num="3" /><render num="4" /><render num="5" /><render num="6" />
+          </repeat>
+          </li>
           <li id="checkboxCheckbox"><obs conceptId="7479" answerConceptId="7478" answerLabel="ECC"/>  </li>
           <li id="checkboxCheckbox"><obs conceptId="7479" answerConceptId="7466" answerLabel="Cryotherapy"/> </li> 
           <li id="checkboxAll"><obs conceptId="7479" answerConceptId="1107" answerLabel="None"/></li>
           </ul>
-        </obsgroup>
         </td>
-        <td class="checkboxGroup"><h5>8. Plan:</h5>
-        <obsgroup groupingConceptId="7500">
+        <td class="checkboxGroup"><h5>7. Plan:</h5>
           <ul>
           <li><obs conceptId="7500" answerConceptId="7496" answerLabel="Routine VIA in 1-year"/></li>
           <li><obs conceptId="7500" answerConceptId="7497" answerLabel="Routine VIA in 3-years"/> </li>
           <li><obs conceptId="7500" answerConceptId="7383" answerLabel="Referral for Colposcopy"/> </li>
           <li><obs conceptId="7500" answerConceptId="7499" answerLabel="Referral to Gynae-Oncology"/> </li>
           </ul>
-        </obsgroup>
         </td>
-        <td><h5>9. FP Plan:</h5>
+        <td><h5>8. FP Plan:</h5>
         <ul>
           <li class="checkboxGroup">
             <h5>Directive FP counseling performed</h5>
-            <obsgroup groupingConceptId="6681">
               <ul id="checkboxRadio">
-                <li><obs conceptId="6681" answerConceptId="1065" answerLabel="Yes"/><obs conceptId="6681" answerConceptId="1066" answerLabel="No"/> </li>
+                <li><obs conceptId="6681" answerConceptId="1065" answerLabel="Yes"/><obs conceptId="6681" answerConceptId="1066" nanswerLabel="No"/> </li>
               </ul>
-            </obsgroup>
           </li>
           <li class="checkboxGroup">
-            <obsgroup groupingConceptId="7495">
               <h5>Refill dispensed</h5><span id="checkboxAll"><obs conceptId="7495" answerConceptId="1107" answerLabel="None"/></span>
               <ul>
                 <li id="checkboxCheckbox"><obs conceptId="7495" answerConceptId="907" answerLabel="Depo"/><obs conceptId="7495" answerConceptId="780" answerLabel="Pills"/> </li>
                 <li id="checkboxCheckbox"><obs conceptId="7495" answerConceptId="6718" answerLabel="Male Condom"/> </li>
                 <li id="checkboxCheckbox"><obs conceptId="7495" answerConceptId="6717" answerLabel="Female Condom"/> </li>
               </ul>
-            </obsgroup>
           </li>
           <li>
         <h5>New method initiated</h5>
-        <obsgroup groupingConceptId="7240"><span class="checkboxGroup">
+        <span class="checkboxGroup">
           <ul>
           <li id="checkboxAll"><obs conceptId="7240" answerConceptId="1107" answerLabel="No new method"/> </li>
           <li><span id="checkboxCheckbox"><obs conceptId="7240" answerConceptId="907" answerLabel="Depo"/></span>
@@ -227,7 +209,6 @@
               <span id="checkboxCheckbox"><obs conceptId="7240" answerConceptId="6717" answerLabel="Female Condom"/> </span>
           </li>
           </ul></span>    
-        </obsgroup>
           </li>
         </ul>
         </td>
@@ -235,7 +216,7 @@
     </tr>
     <tr>
       <td colspan="3">
-      <h5><obs conceptId="5096" labelText="Next Appointment Date"/></h5><br/>
+      <h5><obs conceptId="5096" allowFutureDates="true" labelText="Next Appointment Date"/></h5><br/>
       <h5>Form Filled By: </h5><encounterProvider/>
       </td>
     </tr>
