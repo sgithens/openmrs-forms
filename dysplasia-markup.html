@@ -1,5 +1,4 @@
 <div style="margin:auto; width:800px;">
-  <h2>Testing refactored uplaod script 2</h2>
   <table class="viaform" width="100%">
     <tr>
       <td style="text-align:center;" width="33%">
@@ -96,8 +95,7 @@
           </tr>
           <tr>
             <td></td>
-            <td><obs conceptId="1871" labelText="Latest CD4 count"/>
-            <obs conceptId="7415" labelText="Date"/> 
+            <td><obs conceptId="1871" labelText="Latest CD4 count" showDate="true"/>
             </td>
           </tr>
         </table>
@@ -121,11 +119,8 @@
             <td></td>
             <td><h5>Prior VIA results</h5></td>
             <td>
-              <obsgroup groupingConceptId="7381">
-                <obs conceptId="7381" answerConceptId="664" answerLabel="Negative"/> 
-                <obs conceptId="7381" answerConceptId="703" answerLabel="Positive"/> 
-                <obs conceptId="7380" labelText="Date"/> 
-              </obsgroup>
+                <obs id="7381-neg" conceptId="7381" answerConceptId="664" answerLabel="Negative" showDate="true"/> 
+                <obs id="7381-pos" conceptId="7381" answerConceptId="703" answerLabel="Positive" showDate="true"/> 
             </td>
           </tr>
           <obsgroup groupingConceptId="7423">
@@ -343,7 +338,22 @@
       <h5>9. Procedure(s) Done:</h5>
       <ul>
         <li><obs conceptId="7479" answerConceptId="6511" answerLabel="Biopsies"/> </li>
-        <li><obs conceptId="7481" labelText="o'clock"/> </li>
+        <li id="checkboxCheckbox">
+          <repeat>
+            <template>
+              <obs conceptId="7481" labelText="" answers="{num}.0" answerLabels="{num}" style="radio" />
+            </template>
+            <render num="1" /><render num="2" /><render num="3" /><render num="4" /><render num="5" /><render num="6" />
+          </repeat>
+        </li>
+        <li id="checkboxCheckbox">
+          <repeat>
+            <template>
+              <obs conceptId="7481" labelText="" answers="{num}.0" answerLabels="{num}" style="radio" />
+            </template>
+            <render num="7" /><render num="8" /><render num="9" /><render num="10" /><render num="11" /><render num="12" />
+          </repeat>
+        </li>
         <li><obs conceptId="7479" answerConceptId="7478" answerLabel="ECC"/> </li>
         <li><obs conceptId="7479" answerConceptId="7466" answerLabel="Cryotherapy"/> </li>
         <li><obs conceptId="7479" answerConceptId="7147" answerLabel="LEEP"/> </li>
