@@ -24,10 +24,10 @@
     </tr>
     <tr>
       <td>AMRS
-      <lookup expression="patient.medicalRecordNumber"/> 
+        <lookup class="value" complexExpression="#foreach( $patId in $patientIdentifiers.get('AMRS Medical Record Number') ) $patId #end "/>
       </td>
       <td colspan="2"><h5>AMPATH ID:</h5>
-        <lookup expression="personAttributes.get('AMRS Universal Id')" />
+        <lookup class="value" complexExpression="#foreach( $patId in $patientIdentifiers.get('AMRS Universal ID') ) $patId #end "/>
       </td>
     </tr>
     <tr>
@@ -92,8 +92,7 @@
           </tr>
           <tr>
             <td></td>
-            <td><obs conceptId="1871" labelText="Latest CD4 count"/>
-            <obs conceptId="7415" labelText="Date"/> 
+            <td><obs conceptId="1871" labelText="Latest CD4 count" showDate="true"/>
             </td>
           </tr>
         </table>
@@ -105,11 +104,10 @@
           <tr>
             <td><h5>3.</h5></td>
             <td><h5>Prior VIA</h5><span class="checkboxGroup"><span id="checkboxRadio">
-                <!-- <obs conceptId="7381" answerConceptId="1175" answerLabel="N/A"/> -->
-                <obs conceptId="7381" answerConceptId="703" answerLabel="Positive"/> 
-                <obs conceptId="7381" answerConceptId="664" answerLabel="Negative"/> 
+                <obs conceptId="7381" answerConceptId="1175" answerLabel="N/A"/>
+                <obs conceptId="7381" answerConceptId="703" answerLabel="Positive" showDate="true"/> 
+                <obs conceptId="7381" answerConceptId="664" answerLabel="Negative" showDate="true"/> 
               </span></span>
-              <obs conceptId="7380" labelText="Date"/> 
             </td>
           </tr>
         </table>
@@ -148,7 +146,7 @@
         <td class="checkboxGroup"><h5>Impression: Vulva</h5>
           <ul id="checkboxRadio">
           <li><obs conceptId="7487" answerConceptId="1115" answerLabel="Normal"/> </li>
-          <li><obs conceptId="7490" answerConceptId="1116" answerLabel="Abnormal"/> </li>
+          <li><obs conceptId="7487" answerConceptId="1116" answerLabel="Abnormal"/> </li>
           </ul>
         </td>
       </obsgroup>
@@ -157,7 +155,7 @@
       <obsgroup groupingConceptId="7480">
         <td class="checkboxGroup"><h5>6. Procedures(s) Done</h5>
           <ul>
-          <li id="checkboxCheckbox"><obs conceptId="7479" answerConceptId="6511" answerLabel="Biopsies"/> </li>
+          <li id="checkboxCheckbox"><obs conceptId="7479" answerConceptId="6511" answerLabel="Biopsies (circle all)"/> </li>
           <li id="checkboxCheckbox">
           <repeat>
             <template>
@@ -185,6 +183,7 @@
           <li><obs conceptId="7500" answerConceptId="7497" answerLabel="Routine VIA in 3-years"/> </li>
           <li><obs conceptId="7500" answerConceptId="7383" answerLabel="Referral for Colposcopy"/> </li>
           <li><obs conceptId="7500" answerConceptId="7499" answerLabel="Referral to Gynae-Oncology"/> </li>
+          <li><obs conceptId="7500" answerConceptId="5622" answerLabel="Other"/> </li>
           </ul>
         </td>
         <td><h5>8. FP Plan:</h5>
