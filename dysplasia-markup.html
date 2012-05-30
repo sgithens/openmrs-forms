@@ -15,9 +15,10 @@
       <td>Last name: <lookup expression="patient.familyName" /></td>
     </tr>
     <tr>
-      <td>Ampath ID</td>
+      <td>Ampath ID
+        <lookup class="value" complexExpression="#foreach( $patId in $patientIdentifiers.get('AMRS Universal ID') ) $patId #end "/>
+      </td>
       <td colspan="2">
-        <obsgroup groupingConceptId="1839">
           <table class="layout">
             <tr>
               <td><h5>Type of visit</h5></td>
@@ -28,7 +29,6 @@
               <td><obs conceptId="1839" answerConceptId="7588" answerLabel="Review of Pathology Results"/> </td>
             </tr>
           </table>          
-        </obsgroup>
       </td>
     </tr>
     <tr>
@@ -44,12 +44,10 @@
               <obs conceptId="1836" labelText="LMP" id="via-lmp"/>
             </td>
             <td class="checkboxGroup">
-              <obsgroup groupingConceptId="2061"> 
                 <span id="checkboxRadio">
                 <obs conceptId="2061" answerConceptId="2060" answerLabel="Amenorrhea"/> 
                 <obs conceptId="2061" answerConceptId="6496" answerLabel="Postmenopausal"/> 
                 </span>
-              </obsgroup>
             </td>
           </tr>
           <tr>
@@ -63,7 +61,6 @@
     </tr>
     <tr>
       <td class="checkboxGroup" colspan="3"><h5> 2. Current FP</h5>
-        <obsgroup groupingConceptId="374">
           <span id="checkboxRadio">
           <obs conceptId="374" answerConceptId="1107" answerLabel="None"/> 
           <obs conceptId="374" answerConceptId="907" answerLabel="Depo"/> 
@@ -75,7 +72,6 @@
           <obs conceptId="374" answerConceptId="6717" answerLabel="Female condom"/> 
           <obs conceptId="374" answerConceptId="5277" answerLabel="Rhythm"/> 
           </span>
-        </obsgroup>
       </td>
     </tr>
     <tr>
@@ -84,13 +80,11 @@
           <tr>
             <td><h5>3.</h5></td>
           <td class="checkboxGroup"><h5>HIV Status</h5>
-          <obsgroup groupingConceptId="6709"> 
             <span id="checkboxRadio">
             <obs conceptId="6709" answerConceptId="1067" answerLabel="Unknown"/> 
             <obs conceptId="6709" answerConceptId="664" answerLabel="Negative"/> 
             <obs conceptId="6709" answerConceptId="703" answerLabel="Positive"/> 
             </span>
-          </obsgroup>
           </td>
           </tr>
           <tr>
@@ -108,11 +102,9 @@
             <td><h5>4.</h5></td>  
             <td><h5>History of Dysplasia</h5></td>
             <td>
-              <obsgroup groupingConceptId="7379">
                 <obs conceptId="7379" answerConceptId="1065" answerLabel="Yes"/> 
                 <obs conceptId="7379" answerConceptId="1066" answerLabel="No"/> 
                 <span>If yes, complete the section below</span>
-              </obsgroup>
             </td>
           </tr>
           <tr>
@@ -123,48 +115,42 @@
                 <obs id="7381-pos" conceptId="7381" answerConceptId="703" answerLabel="Positive" showDate="true"/> 
             </td>
           </tr>
-          <obsgroup groupingConceptId="7423">
             <tr>
               <td></td>
               <td><h5>Prior PAP: </h5></td>
-              <td><obs conceptId="7423" answerConceptId="1115" answerLabel="Normal"/> 
-              <obs conceptId="7423" answerConceptId="7417" answerLabel="ASCUS"/> 
-              <obs conceptId="7423" answerConceptId="7418" answerLabel="AGUS"/> 
-              <obs conceptId="7423" answerConceptId="7419" answerLabel="LSIL"/> 
-              <obs conceptId="7423" answerConceptId="7420" answerLabel="HSIL"/> 
+              <td><obs conceptId="7423" showDate="true" answerConceptId="1115" answerLabel="Normal"/> 
+              <obs conceptId="7423" showDate="true" answerConceptId="7417" answerLabel="ASCUS"/> 
+              <obs conceptId="7423" showDate="true" answerConceptId="7418" answerLabel="AGUS"/> 
+              <obs conceptId="7423" showDate="true" answerConceptId="7419" answerLabel="LSIL"/> 
+              <obs conceptId="7423" showDate="true" answerConceptId="7420" answerLabel="HSIL"/> 
               </td>
             </tr>
             <tr>
               <td></td>
               <td></td>
-              <td><obs conceptId="7423" answerConceptId="7421" answerLabel="SquamousCA"/> 
-              <obs conceptId="7423" answerConceptId="7421" answerLabel="AdenoCA"/> 
-              <obs conceptId="6727" labelText="Date"/> 
+              <td><obs conceptId="7423" showDate="true" answerConceptId="7421" answerLabel="SquamousCA"/> 
+              <obs conceptId="7423" showDate="true" answerConceptId="7422" answerLabel="AdenoCA"/> 
               </td>
             </tr>
-          </obsgroup>
           <tr>
-            <obsgroup groupingConceptId="7426">
               <td></td>
               <td><h5>Prior Colpo results:</h5></td>
               <td>
-                <obs conceptId="7426" answerConceptId="1115" answerLabel="Normal"/> 
-                <obs conceptId="7426" answerConceptId="7424" answerLabel="CIN 1"/> 
-                <obs conceptId="7426" answerConceptId="7425" answerLabel="CIN 2"/> 
-                <obs conceptId="7426" answerConceptId="7216" answerLabel="CIN 3"/> 
-                <obs conceptId="7426" answerConceptId="6537" answerLabel="Carcinoma"/>      
+                <obs conceptId="7426" showDate="true"  answerConceptId="1115" answerLabel="Normal"/> 
+                <obs conceptId="7426" showDate="true"  answerConceptId="7424" answerLabel="CIN 1"/> 
+                <obs conceptId="7426" showDate="true"  answerConceptId="7425" answerLabel="CIN 2"/> 
+                <obs conceptId="7426" showDate="true"  answerConceptId="7216" answerLabel="CIN 3"/> 
+                <obs conceptId="7426" showDate="true"  answerConceptId="6537" answerLabel="Carcinoma"/>      
               </td>
-            </obsgroup>
           </tr>
           <tr>
             <td></td>
             <td></td>
-            <td><obs conceptId="7416" labelText="Date"/></td>
           </tr>
           <tr>
             <td></td>
-            <td colspan="2" ><obs conceptId="7400" labelText="Other Biopsy Results"/>
-            <obs conceptId="7427" labelText="Date"/> </td>
+            <td colspan="2" ><obs conceptId="7400" showDate="true" labelText="Other Biopsy Results"/>
+            </td>
           </tr>
         </table>
       </td>
@@ -182,10 +168,9 @@
             <tr>
                 <obsgroup groupingConceptId="7580">
               <td>
-                  <obs conceptId="7467" answerConceptId="{treatmentConcept}" answerLabel="{treatmentLabel}"/>
+                  <obs conceptId="7467" answerConceptId="{treatmentConcept}" answerLabel="{treatmentLabel}" showDate="true"/>
               </td>
               <td>
-                <obs conceptId="7468" labelText=""/>
               </td>
               <td>
                 <obs conceptId="7579" answerConceptId="1115" answerLabel="Normal"/>
@@ -199,7 +184,7 @@
                 </obsgroup>
             </tr>
           </template>
-          <render treatmentConcept="7466" treatmentLabel="Cryotherapy" />
+          <render treatmentConcept="7466" treatmentLabel="Cryotherapy"/>
           <render treatmentConcept="7147" treatmentLabel="LEEP" />
         </repeat>
       </table>
@@ -211,7 +196,6 @@
     <tr>    
       <td colspan="2" >
         <h5>Satisfactory Colposcopy?</h5>
-        <obsgroup groupingConceptId="7428">
           <ul>
             <li><obs conceptId="7428" answerConceptId="1065" answerLabel="Yes"/> 
             <obs conceptId="7428" answerConceptId="1066" answerLabel="No"/> ,entire SCJ not seen
@@ -220,8 +204,6 @@
               <obs conceptId="7428" answerConceptId="1118" answerLabel="Not done today"/> 
             </li>
           </ul>
-        </obsgroup>
-        <obsgroup groupingConceptId="7477">
           <h5>Lesion:</h5>
           <ul>
             <li><obs conceptId="7477" answerConceptId="7474" answerLabel="lt 50% of cervix"/> 
@@ -229,10 +211,8 @@
           </li>
           <li><obs conceptId="7477" answerConceptId="7476" answerLabel="Extends into canal"/> </li>
           </ul>
-        </obsgroup>
       </td>
       <td>    
-        <obsgroup groupingConceptId="7383">
           <h5>Findings:</h5>
           <ul>
             <li>
@@ -244,7 +224,6 @@
             <li><obs conceptId="7383" answerConceptId="7471" answerLabel="Mosaicism"/> </li>
             <li><obs conceptId="7383" answerConceptId="7472" answerLabel="Atypical Vessels"/> </li>
           </ul>
-        </obsgroup>
       </td>
     </tr>
     <tr><td colspan="3" >
@@ -372,20 +351,18 @@
               <li><obs conceptId="7500" answerConceptId="7498" answerLabel="VIA or Pap Smear in 6-months"/> </li>
               <li><obs conceptId="7500" answerConceptId="7383" answerLabel="Repeat Colposcopy"/> </li>
               <li><obs conceptId="7368" labelText="months"/> </li>
+              <li><obs conceptId="7500" answerConceptId="5622" answerLabel="Other"/> </li>
             </ul>
         </obsgroup>
       </td>
       <td>
         <h5>11. FP Plan:</h5>
         <h5>Directive FP counseling performed?</h5>
-        <obsgroup groupingConceptId="6681">
           <ul>
             <li><obs conceptId="6681" answerConceptId="1065" answerLabel="Yes"/> </li>
             <li><obs conceptId="6681" answerConceptId="1066" answerLabel="No"/> </li>
           </ul>
-        </obsgroup>
         <h5>Refill dispensed:</h5>
-        <obsgroup groupingConceptId="7495">
           <ul>
             <li><obs conceptId="7495" answerConceptId="907" answerLabel="Depo"/> 
             <obs conceptId="7495" answerConceptId="780" answerLabel="Pills"/> 
@@ -393,9 +370,7 @@
             <li><obs conceptId="7495" answerConceptId="6718" answerLabel="Male condom"/> </li>
             <li><obs conceptId="7495" answerConceptId="6717" answerLabel="Female condom"/> </li>
           </ul>
-        </obsgroup>
         <h5>New method initiated:</h5>
-        <obsgroup groupingConceptId="7240">
           <ul>
             <li><obs conceptId="7240" answerConceptId="907" answerLabel="Depo"/> 
             <obs conceptId="7240" answerConceptId="780" answerLabel="Pills"/> 
@@ -404,9 +379,7 @@
             <li><obs conceptId="7240" answerConceptId="6718" answerLabel="Male Condom"/> </li>
             <li><obs conceptId="7240" answerConceptId="6717" answerLabel="Female Condom"/> </li>
             <li><obs conceptId="7240" answerConceptId="1107" answerLabel="No new method"/> </li>
-
           </ul>
-        </obsgroup>
       </td>
     </tr>
 
