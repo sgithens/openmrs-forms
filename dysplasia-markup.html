@@ -111,36 +111,49 @@
             <td></td>
             <td><h5>Prior VIA results</h5></td>
             <td>
-                <obs id="7381-neg" conceptId="7381" answerConceptId="664" answerLabel="Negative" showDate="true"/> 
-                <obs id="7381-pos" conceptId="7381" answerConceptId="703" answerLabel="Positive" showDate="true"/> 
+              <span class="checkboxGroup"><span id="checkboxRadio">
+                <obs id="neg7381" conceptId="7381" answerConceptId="664" answerLabel="Negative" showDate="true"/> 
+                <obs id="pos7381" conceptId="7381" answerConceptId="703" answerLabel="Positive" showDate="true"/> 
+              </span></span>
+            </td>
+            <td>
+                <!-- Detached obs.datetime -->
+                <input id="combined7381datetime" type="text" size="10" onClick="showCalendar(this)" /> (dd/mm/yyyy)
             </td>
           </tr>
             <tr>
               <td></td>
               <td><h5>Prior PAP: </h5></td>
-              <td><obs conceptId="7423" showDate="true" answerConceptId="1115" answerLabel="Normal"/> 
-              <obs conceptId="7423" showDate="true" answerConceptId="7417" answerLabel="ASCUS"/> 
-              <obs conceptId="7423" showDate="true" answerConceptId="7418" answerLabel="AGUS"/> 
-              <obs conceptId="7423" showDate="true" answerConceptId="7419" answerLabel="LSIL"/> 
-              <obs conceptId="7423" showDate="true" answerConceptId="7420" answerLabel="HSIL"/> 
+              <td  class="checkboxGroup"><span id="checkboxRadio">
+                <obs id="normal7423" conceptId="7423" showDate="true" answerConceptId="1115" answerLabel="Normal"/> 
+                <obs id="ascus7423" conceptId="7423" showDate="true" answerConceptId="7417" answerLabel="ASCUS"/> 
+                <obs id="agus7423" conceptId="7423" showDate="true" answerConceptId="7418" answerLabel="AGUS"/> 
+                <obs id="lsil7423" conceptId="7423" showDate="true" answerConceptId="7419" answerLabel="LSIL"/>                 
+                <obs id="hsil7423" conceptId="7423" showDate="true" answerConceptId="7420" answerLabel="HSIL"/> 
+                <obs id="squamous7423" conceptId="7423" showDate="true" answerConceptId="7421" answerLabel="SquamousCA"/> 
+                <obs id="adeno7423" conceptId="7423" showDate="true" answerConceptId="7422" answerLabel="AdenoCA"/>
+              </span>
               </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td></td>
-              <td><obs conceptId="7423" showDate="true" answerConceptId="7421" answerLabel="SquamousCA"/> 
-              <obs conceptId="7423" showDate="true" answerConceptId="7422" answerLabel="AdenoCA"/> 
+              <td>
+                <!-- Detached obs.datetime -->
+                <input id="combined7423datetime" type="text" size="10" onClick="showCalendar(this)" /> (dd/mm/yyyy)                
               </td>
             </tr>
           <tr>
               <td></td>
               <td><h5>Prior Colpo results:</h5></td>
+              <td class="checkboxGroup">
+                <span id="checkboxRadio">
+                <obs id="normal7426" conceptId="7426" showDate="true"  answerConceptId="1115" answerLabel="Normal"/> 
+                <obs id="cin17426" conceptId="7426" showDate="true"  answerConceptId="7424" answerLabel="CIN 1"/> 
+                <obs id="cin27426" conceptId="7426" showDate="true"  answerConceptId="7425" answerLabel="CIN 2"/> 
+                <obs id="cin37426" conceptId="7426" showDate="true"  answerConceptId="7216" answerLabel="CIN 3"/> 
+                <obs id="carcinoma7426" conceptId="7426" showDate="true"  answerConceptId="6537" answerLabel="Carcinoma"/>      
+                </span>
+              </td>
               <td>
-                <obs conceptId="7426" showDate="true"  answerConceptId="1115" answerLabel="Normal"/> 
-                <obs conceptId="7426" showDate="true"  answerConceptId="7424" answerLabel="CIN 1"/> 
-                <obs conceptId="7426" showDate="true"  answerConceptId="7425" answerLabel="CIN 2"/> 
-                <obs conceptId="7426" showDate="true"  answerConceptId="7216" answerLabel="CIN 3"/> 
-                <obs conceptId="7426" showDate="true"  answerConceptId="6537" answerLabel="Carcinoma"/>      
+                <!-- Detached obs.datetime -->
+                <input id="combined7426datetime" type="text" size="10" onClick="showCalendar(this)" /> (dd/mm/yyyy)                
               </td>
           </tr>
           <tr>
@@ -179,7 +192,7 @@
                 <obs conceptId="7579" answerConceptId="7216" answerLabel="CIN 3"/>
                 <obs conceptId="7579" answerConceptId="7421" answerLabel="SquamousCA"/>
                 <obs conceptId="7579" answerConceptId="7422" answerLabel="AdenoCA"/>
-                <obs conceptId="7579" answerConceptId="5622" answerLabel="Other:"/>
+                <obs conceptId="5622" labelText="Other:"/> 
               </td>
                 </obsgroup>
             </tr>
@@ -358,9 +371,9 @@
       <td>
         <h5>11. FP Plan:</h5>
         <h5>Directive FP counseling performed?</h5>
-          <ul>
-            <li><obs conceptId="6681" answerConceptId="1065" answerLabel="Yes"/> </li>
-            <li><obs conceptId="6681" answerConceptId="1066" answerLabel="No"/> </li>
+          <ul class="checkboxGroup">
+            <li id="checkboxRadio"><obs conceptId="6681" answerConceptId="1065" answerLabel="Yes"/> </li>
+            <li id="checkboxRadio"><obs conceptId="6681" answerConceptId="1066" answerLabel="No"/> </li>
           </ul>
         <h5>Refill dispensed:</h5>
           <ul>
@@ -371,14 +384,14 @@
             <li><obs conceptId="7495" answerConceptId="6717" answerLabel="Female condom"/> </li>
           </ul>
         <h5>New method initiated:</h5>
-          <ul>
-            <li><obs conceptId="7240" answerConceptId="907" answerLabel="Depo"/> 
+          <ul class="checkboxGroup">
+            <li id="checkboxCheckbox"><obs conceptId="7240" answerConceptId="907" answerLabel="Depo"/> 
             <obs conceptId="7240" answerConceptId="780" answerLabel="Pills"/> 
             </li>
-            <li><obs conceptId="7240" answerConceptId="6220" answerLabel="Implant"/> </li>
-            <li><obs conceptId="7240" answerConceptId="6718" answerLabel="Male Condom"/> </li>
-            <li><obs conceptId="7240" answerConceptId="6717" answerLabel="Female Condom"/> </li>
-            <li><obs conceptId="7240" answerConceptId="1107" answerLabel="No new method"/> </li>
+            <li id="checkboxCheckbox"><obs conceptId="7240" answerConceptId="6220" answerLabel="Implant"/> </li>
+            <li id="checkboxCheckbox"><obs conceptId="7240" answerConceptId="6718" answerLabel="Male Condom"/> </li>
+            <li id="checkboxCheckbox"><obs conceptId="7240" answerConceptId="6717" answerLabel="Female Condom"/> </li>
+            <li id="checkboxAll"><obs conceptId="7240" answerConceptId="1107" answerLabel="No new method"/> </li>
           </ul>
       </td>
     </tr>
