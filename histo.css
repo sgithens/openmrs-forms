@@ -1,0 +1,27 @@
+ul {
+    list-style-type: none;
+    padding-left: 0px;
+    margin-top: 0px;
+}
+
+.splitHeader {
+    font-weight:bold;
+    background:#e6e6e6;
+}
+
+ul.compact, ul.compact li {
+    display: inline;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table.histo {
+    width: 100%;
+
+}
+
+table.histo, table.histo td {
+    border: thin black solid;
+}

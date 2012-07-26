@@ -1,0 +1,114 @@
+<div style="margin:auto; width:100%;">
+  <table  width="100%" class="histo">
+    <tr>
+      <td colspan="5" style="text-align:center;font-weight:bold;background:#e6e6e6;">AMPATH CCSP HISTOPATHOLOGY REPORT FORM</td>
+    </tr>
+    <tr>
+      <td colspan="5" >AMRS
+      <lookup class="value" complexExpression="#foreach( $patId in $patientIdentifiers.get('AMRS Medical Record Number') ) $patId #end "/>
+      <h5>AMPATH ID:</h5>
+      <lookup class="value" complexExpression="#foreach( $patId in $patientIdentifiers.get('AMRS Universal ID') ) $patId #end "/>
+
+1st Name        <lookup expression="patient.givenName" />
+2nd Name        <lookup expression="patient.middleName"/> 
+3rd Name        <lookup expression="patient.familyName"/> 
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" >
+        <h5>Age:</h5><lookup class="value" expression="patient.age"/>
+        <obs conceptId="1836" labelText="LMP" />
+        Date of Biopsy Collection
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" >
+        Complaints: 
+        <ul class="compact">
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="None"/></li>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Vaginal Discharge"/></li>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Irregular Bleeding"/></li>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Post-Coital Bleeding"/></li>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Menorrhagia"/></li>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Post-Menopausal Bleeding"/></li>
+        </ul>
+          <obs conceptId="7579" answerConceptId="7424" answerLabel="Other"/> Specify ___________
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" >
+        Current Contraception:
+        <ul class="compact">
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="None"/></li>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Hormonal"/></li>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="IUCD"/></li>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Other"/>(specify)____________</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" class="splitHeader">TYPE OF SPECIMEN</td>
+    </tr>
+    <tr>
+      <td colspan="2" >
+        <ul>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="LEEP"/></li>
+          <li>Location of LEEP Specimens:</li>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="(1) Superficial"/></li>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="(2) Deep"/></li>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="(3) Other"/>(3)____________</li>
+        </ul>
+      </td>
+      <td colspan="3" >
+        <ul>
+          <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Punch"/></li>
+          <li>Location of Punch Biopsies:</li>
+          <li>_____ o clock</li>
+          <li>_____ o clock</li>
+          <li>_____ o clock</li>
+          <li>Other: _______</li>
+        </ul>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" class="splitHeader">TO BE COMPLETED BY PATHOLOGIST</td>
+    </tr>
+    <tr>
+      <repeat>
+        <template>
+          <td><span>{specimen}</span>
+          <ul>
+               <li><obs conceptId="7579" answerConceptId="7424" answerLabel="No Epithelial Abnormality"/></li>
+               <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Chronic Cervicitis"/></li>
+               <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Squamous Metaplasia"/></li>
+               <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Condylomata/HPV"/></li>
+               <li><obs conceptId="7579" answerConceptId="7424" answerLabel="CIN I/Mild"/></li>
+               <li><obs conceptId="7579" answerConceptId="7424" answerLabel="CIN II/Moderate Dysplasia"/></li>
+               <li><obs conceptId="7579" answerConceptId="7424" answerLabel="CIN III/Severe Dysplasia"/></li>
+               <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Carcinoma in situ"/></li>
+               <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Microinvasive Carcinoma"/></li>
+               <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Invasive Squamous Cell Carcinoma"/></li>
+               <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Adenocarcinoma In-Situ"/></li>
+               <li><obs conceptId="7579" answerConceptId="7424" answerLabel="Invasive Adenocarcinoma"/></li>
+          </ul>
+          </td>
+        </template>
+        <render specimen="LEEP SPECIMEN DIAGNOSIS (1)" />
+        <render specimen="LEEP SPECIMEN DIAGNOSIS (2)" />
+        <render specimen="PUNCH BIOPSY DIAGNOSIS (1)" />
+        <render specimen="PUNCH BIOPSY DIAGNOSIS (2)" />
+        <render specimen="PUNCH BIOPSY DIAGNOSIS (3)" />
+      </repeat>
+    </tr>
+    <tr>
+      <td colspan="5" >
+        COMMENTS:_______________________________
+      </td>
+    </tr>
+    <tr>
+      <td colspan="5" >Date <encounterDate default="today"/>
+      <h5>Form Filled By: </h5><encounterProvider/>
+      </td>
+    </tr>
+  </table>
+</div>
